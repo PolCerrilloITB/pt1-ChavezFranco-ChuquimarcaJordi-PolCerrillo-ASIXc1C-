@@ -7,6 +7,11 @@ def pedir_texto(palabra):
     except:
         print("La plabra ")
 
+def desordenar_frase(frase):
+    texto = texto.split()
+    palabras_desordenadas = [desordenar_palabra(palabra) for palabra in texto]
+    frase_desordenada = ' '.join(palabras_desordenadas)
+    return frase_desordenada
 
 
 def main():
