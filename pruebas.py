@@ -10,6 +10,6 @@ try:
         intermedio = list(palabra[1:0])
         random.shuffle(intermedio)
         desorden = ''.join(primera + intermedio + ultima)
-        return desorden
+        #return desorden
 except:
     print("")
