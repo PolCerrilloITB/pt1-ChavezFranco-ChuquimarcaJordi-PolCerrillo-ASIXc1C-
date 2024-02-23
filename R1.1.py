@@ -20,8 +20,4 @@ def main():
     frase = input("")
     frase_desordenada = desordenar_texto(frase)
     print("", frase_desordenada)
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/main
 main()
