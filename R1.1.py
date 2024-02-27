@@ -56,7 +56,7 @@ def desordenar_texto(frase):
 
 
 def main():
-    frase = str(input("Ingrese una frase: "))
+    frase = str(input(""))
     frase_mezcla = desordenar_texto(frase)
     print(frase_mezcla)
 
