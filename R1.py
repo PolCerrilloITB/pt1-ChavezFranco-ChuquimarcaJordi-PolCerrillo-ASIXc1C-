@@ -9,15 +9,37 @@ no es genera arbitràriament, sinó que es planteja com un objectiu parcial, amb
 el seu problema de nivell superior. Un cop assolits tots aquests objectius parcials, es considera resolt el total.
 '''
 import  random
+def es_numero(palabra):
+    try:
+        int(palabra)
+        return True
+    except ValueError:
+        return False
 def desordenar_palabra(palabra):
         if len(palabra) > 2:
+            if es_numero(palabra):
+                return palabra
             puntuacion = ''
-            if palabra[-1] in ',.?!;:':
+            if palabra[-1] in ',.?¿¡!;:':
                 puntuacion = palabra[-1]
                 palabra = palabra[:-1]
-            intermedio = list(palabra[1:-1])
-            random.shuffle(intermedio)
-            desorden = palabra[0] + ''.join(intermedio) + palabra[-1] + puntuacion
+                intermedio = list(palabra[1:-1])
+                random.shuffle(intermedio)
+                desorden = palabra[0] + ''.join(intermedio) + palabra[-1] + puntuacion
+            elif palabra[0] in ',.?¿¡!;:':
+                puntuacion = palabra[0]
+                palabra = palabra[0:]
+                intermedio = list(palabra[2:-1])
+                random.shuffle(intermedio)
+                desorden = puntuacion + palabra[1] + ''.join(intermedio) + palabra[-1]
+            elif palabra[:] in ',.?¿¡!;:':
+                palabra = palabra[:]
+                intermedio = list(palabra[:])
+                desorden = palabra[0] + intermedio + palabra[-1]
+            else:
+                intermedio = list(palabra[1:-1])
+                random.shuffle(intermedio)
+                desorden = palabra[0] + ''.join(intermedio) + palabra[-1]
             return desorden
         else:
             return palabra
@@ -29,5 +51,5 @@ def desordenar_texto(frase):
 def main():
     frase = str(input(""))
     frase_mezcla = desordenar_texto(frase)
-    print("", frase_mezcla)
+    print(frase_mezcla)
 main()
