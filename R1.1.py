@@ -12,9 +12,9 @@ import random
 import string
 
 
-def es_numero(palabra):
+def numero(palabra):
     try:
-        float(palabra)
+        int(palabra)
         return True
     except ValueError:
         return False
@@ -22,7 +22,7 @@ def es_numero(palabra):
 
 def desordenar_palabra(palabra):
     if len(palabra) > 2:
-        if es_numero(palabra):
+        if numero(palabra):
             return palabra
 
         simbolos_puntuacion = string.punctuation
