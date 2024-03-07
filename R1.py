@@ -9,7 +9,7 @@ no es genera arbitràriament, sinó que es planteja com un objectiu parcial, amb
 el seu problema de nivell superior. Un cop assolits tots aquests objectius parcials, es considera resolt el total.
 '''
 import  random
-def es_numero(palabra):
+def numero(palabra):
     try:
         int(palabra)
         return True
@@ -17,7 +17,7 @@ def es_numero(palabra):
         return False
 def desordenar_palabra(palabra):
         if len(palabra) > 2:
-            if es_numero(palabra):
+            if numero(palabra):
                 return palabra
             puntuacion = ''
             if palabra[-1] in ',.?¿¡!;:':
