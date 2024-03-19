@@ -21,6 +21,4 @@ def main():
     frase_original = str(input("Introduce una frase: "))
     frase_desordenada = desordenar_frase(frase_original)
     print("Frase desordenada:", frase_desordenada)
-
-if __name__ == "__main__":
-    main()
+main()
