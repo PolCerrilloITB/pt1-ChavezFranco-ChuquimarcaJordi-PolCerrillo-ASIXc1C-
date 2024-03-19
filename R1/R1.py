@@ -19,20 +19,20 @@ def desordenar_palabra(palabra):
         if len(palabra) > 2:
             if numero(palabra):
                 return palabra
-            puntuacion = ''
-            if palabra[-1] in ',.?¿¡!;:':
+            puntuacion = ',.?¿¡!;:€'
+            if palabra[-1] in puntuacion:
                 puntuacion = palabra[-1]
                 palabra = palabra[:-1]
                 intermedio = list(palabra[1:-1])
                 random.shuffle(intermedio)
                 desorden = palabra[0] + ''.join(intermedio) + palabra[-1] + puntuacion
-            elif palabra[0] in ',.?¿¡!;:':
+            elif palabra[0] in puntuacion:
                 puntuacion = palabra[0]
                 palabra = palabra[0:]
                 intermedio = list(palabra[2:-1])
                 random.shuffle(intermedio)
                 desorden = puntuacion + palabra[1] + ''.join(intermedio) + palabra[-1]
-            elif palabra[:] in ',.?¿¡!;:':
+            elif palabra[:] in puntuacion:
                 palabra = palabra[:]
                 intermedio = list(palabra[:])
                 desorden = palabra[0] + intermedio + palabra[-1]
