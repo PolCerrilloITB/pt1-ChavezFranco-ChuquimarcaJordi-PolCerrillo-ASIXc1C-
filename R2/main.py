@@ -10,5 +10,5 @@ el seu problema de nivell superior. Un cop assolits tots aquests objectius parci
 '''
 import crazy_words
 def main():
-    crazy_words.demanar_frase()
+    crazy_words.printar_pedir_frase()
 main()
