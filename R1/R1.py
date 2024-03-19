@@ -8,7 +8,7 @@ Un punt important, a tenir en compte en aplicar aquesta descomposició, és que 
 no es genera arbitràriament, sinó que es planteja com un objectiu parcial, amb entitat pròpia, per resoldre
 el seu problema de nivell superior. Un cop assolits tots aquests objectius parcials, es considera resolt el total.
 '''
-import  random
+import random
 def numero(palabra):
     try:
         int(palabra)
