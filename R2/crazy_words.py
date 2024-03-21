@@ -40,13 +40,12 @@ def desordenar_palabra(palabra):
             url = url_coinicde.group(1)
             palabra = palabra.replace(url, '')
             return url
-        email = None
-        email_coincide = re.search(r'[\w\.-]+@[\w\.-]+', palabra)
-        if email_coincide:
-            email = email_coincide.group(0)
-            palabra = palabra.replace(email, '')
-            return email
-
+        mail = None
+        mail_coincide = re.search(r'[\w\.-]+@[\w\.-]+', palabra)
+        if mail_coincide:
+            mail = mail_coincide.group(0)
+            palabra = palabra.replace(mail, '')
+            return mail
         return desordenar_palabra
     else:
         return palabra
