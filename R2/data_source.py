@@ -12,10 +12,6 @@ import requests
 import openai
 openai.api_key = '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'
 API_KEY = 'MjOTkzw75nU7momSX5KDbQ==gVWI97BI0oLZ8eHj'
-frase = ""
-question = ""
-
-
 def get_data__from_keyboard():
     global frase
     frase = str(input())
@@ -33,16 +29,20 @@ def get_data_from_server():
         return None
 
 
-def get_data_from_chatgpt(pregunta):
-    global question
-    question = str(input())
-    frase = openai.Completion.create(
-        model="gpt-3.5-turbo-instruct",
-        prompt=question,
-        max_tokens=200
+def get_data_from_chatGPT(question):
+    api_key = ''
+    client = OpenAI(api_key=api_key)
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {
+                "role": "user",
+                "content": question,
+            }
+        ],
     )
-    return frase.choices[0].text.strip()
-
+    generated_text = response.choices[0].message.content
+    return (generated_text)
 
 def get_data_from_file(file_name):
     pass
