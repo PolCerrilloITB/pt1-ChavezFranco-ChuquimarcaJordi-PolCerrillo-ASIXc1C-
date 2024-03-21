@@ -11,11 +11,12 @@ el seu problema de nivell superior. Un cop assolits tots aquests objectius parci
 import requests
 import openai
 openai.api_key = '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'
-
 API_KEY = 'MjOTkzw75nU7momSX5KDbQ==gVWI97BI0oLZ8eHj'
-frase = "."
+
+
 def get_data__from_keyboard(frase):
     return frase
+
 
 def get_data_from_server(frase):
     frase = requests.get(frase, headers={'X-Api-Key': API_KEY})
@@ -26,7 +27,7 @@ def get_data_from_server(frase):
         return None
 
 
-def get_data_from_chatGPT(question):
+def get_data_from_chatgpt(question):
 
     frase = openai.Completion.create(
         engine="text-davinci-002",
@@ -34,3 +35,7 @@ def get_data_from_chatGPT(question):
         max_tokens=200
     )
     return frase.choices[0].text.strip()
+
+
+def get_data_from_file(file_name):
+    pass
