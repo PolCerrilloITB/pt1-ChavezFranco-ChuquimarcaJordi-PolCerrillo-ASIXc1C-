@@ -15,8 +15,6 @@ def desordenar_palabra(palabra):
     if len(palabra) > 2:
         simbolos_principio = ''
         simbolos_final = ''
-        if palabra in numeros:
-            palabra = palabra
         if palabra[0] in ',.?¿¡!;:€@/()=&%$#"|':
             simbolos_principio = palabra[0]
             palabra = palabra[0:]
@@ -30,13 +28,13 @@ def desordenar_palabra(palabra):
         intermedio = list(palabra[1:-1])
         random.shuffle(intermedio)
         if apostrofe != -1:
-            intermedio.insert =(apostrofe.index - 1, "'")
+            intermedio.insert = (apostrofe.index - 1, "'")
         desordenar_palabra = simbolos_principio + palabra[0] + ''.join(intermedio) + palabra[-1] + simbolos_final
         url = None
         url_coinicde = re.search(r'(https://\s+)', palabra)
         if url_coinicde:
             url = url_coinicde.group(1)
-            frase = palabra.replace(url, "")
+            palabra = palabra.replace(url, "")
         return desordenar_palabra
     else:
         return palabra
