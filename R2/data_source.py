@@ -28,14 +28,9 @@ def get_data_from_server(frase):
 
 def get_data_from_chatGPT(question):
 
-    respuesta = openai.Completion.create(
+    frase = openai.Completion.create(
         engine="text-davinci-002",
         prompt=question,
         max_tokens=200
     )
-    return respuesta.choices[0].text.strip()
-
-# Ejemplo de uso:
-pregunta = input("Introduce tu pregunta: ")
-respuesta = get_data_from_chatGPT(pregunta)
-print("Respuesta obtenida:", respuesta)
+    return frase.choices[0].text.strip()
