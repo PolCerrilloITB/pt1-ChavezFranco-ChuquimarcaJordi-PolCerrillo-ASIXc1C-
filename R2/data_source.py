@@ -17,14 +17,13 @@ def get_data__from_keyboard():
 
 
 def get_data_from_server():
-    global frase
-    frase = str(input())
-    frase = requests.get(frase, headers={'X-Api-Key': API_KEY})
-    if frase.status_code == 200:
-        return frase.text
+    limit = 3
+    api_url = 'https://api.api-ninjas.com/v1/facts?limit={}'.format(limit)
+    response = requests.get(api_url, headers={'X-Api-Key': API_KEY})
+    if response.status_code == requests.codes.ok:
+        print(response.text)
     else:
-        print(f"Error al obtener el input desde la API. Código de estado: {frase.status_code}")
-        return None
+        print("Error:", response.status_code, response.text)
 
 
 def get_data_from_chatgpt(question):
