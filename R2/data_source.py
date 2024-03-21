@@ -23,3 +23,4 @@ def get_data_from_server(frase):
     else:
         print(f"Error al obtener el input desde la API. Código de estado: {frase.status_code}")
         return None
+
