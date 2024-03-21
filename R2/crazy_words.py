@@ -8,6 +8,7 @@ Un punt important, a tenir en compte en aplicar aquesta descomposició, és que 
 no es genera arbitràriament, sinó que es planteja com un objectiu parcial, amb entitat pròpia, per resoldre
 el seu problema de nivell superior. Un cop assolits tots aquests objectius parcials, es considera resolt el total.
 '''
+numeros = ["0" "1" "2" "3" "4" "5" "6" "7" "8" "9"]
 import random
 import re
 def desordenar_frase(frase):
@@ -19,6 +20,8 @@ def desordenar_palabra(frase):
     if len(frase) > 2:
         simbolos_principio = ''
         simbolos_final = ''
+        if frase in numeros:
+            frase = frase
         if frase[0] in ',.?¿¡!;:€@/()=&%$#"|':
             simbolos_principio = frase[0]
             frase = frase[0:]
