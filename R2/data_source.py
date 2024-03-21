@@ -9,11 +9,9 @@ no es genera arbitràriament, sinó que es planteja com un objectiu parcial, amb
 el seu problema de nivell superior. Un cop assolits tots aquests objectius parcials, es considera resolt el total.
 '''
 import requests
-import openai
-openai.api_key = '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'
+from openai import OpenAI
 API_KEY = 'MjOTkzw75nU7momSX5KDbQ==gVWI97BI0oLZ8eHj'
 def get_data__from_keyboard():
-    global frase
     frase = str(input())
     return frase
 
@@ -29,8 +27,8 @@ def get_data_from_server():
         return None
 
 
-def get_data_from_chatGPT(question):
-    api_key = ''
+def get_data_from_chatgpt(question):
+    api_key = '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'
     client = OpenAI(api_key=api_key)
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
@@ -41,8 +39,8 @@ def get_data_from_chatGPT(question):
             }
         ],
     )
-    generated_text = response.choices[0].message.content
-    return (generated_text)
+    generar_texto = response.choices[0].message.content
+    return(generar_texto)
 
 def get_data_from_file(file_name):
     pass
