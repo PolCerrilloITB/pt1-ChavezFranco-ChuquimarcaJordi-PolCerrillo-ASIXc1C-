@@ -25,7 +25,7 @@ def main():
         question = input("Cual es tu pregunta?")
         frase = data_source.get_data_from_chatgpt(question)
     elif eleccion == "4":
-        print("Proximament")
+        print("Proximamente")
     else:
         print("Escoje una de las siguientes opciones")
     if eleccion in ["1", "2", "3", "4"]:

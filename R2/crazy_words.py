@@ -53,8 +53,6 @@ def desordenar_frase(frase):
     palabras = frase.split()
     mezcla = [desordenar_palabra(palabra) for palabra in palabras]
     return ' '.join(mezcla)
-
-
 def printar_pedir_frase(frase):
     frase_mezcla = desordenar_frase(frase)
     return frase_mezcla

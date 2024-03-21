@@ -14,18 +14,13 @@ API_KEY = 'MjOTkzw75nU7momSX5KDbQ==gVWI97BI0oLZ8eHj'
 def get_data__from_keyboard():
     frase = str(input())
     return frase
-
-
 def get_data_from_server():
-    limit = 3
-    api_url = 'https://api.api-ninjas.com/v1/facts?limit={}'.format(limit)
+    api_url = 'https://api.api-ninjas.com/v1/randomword'
     response = requests.get(api_url, headers={'X-Api-Key': API_KEY})
     if response.status_code == requests.codes.ok:
-        print(response.text)
+        return response.text.replace('{', '').replace('"', '').replace('}', '')
     else:
-        print("Error:", response.status_code, response.text)
-
-
+        return "Error:" .format(response.status_code, response.text)
 def get_data_from_chatgpt(question):
     api_key = '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'
     client = OpenAI(api_key=api_key)
@@ -40,7 +35,6 @@ def get_data_from_chatgpt(question):
     )
     generar_texto = response.choices[0].message.content
     return(generar_texto)
-
 def get_data_from_file(file_name):
     pass
 
