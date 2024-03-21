@@ -9,6 +9,25 @@ no es genera arbitràriament, sinó que es planteja com un objectiu parcial, amb
 el seu problema de nivell superior. Un cop assolits tots aquests objectius parcials, es considera resolt el total.
 '''
 import crazy_words
+import data_source
 def main():
-    crazy_words.printar_pedir_frase()
+    print(1,"Get data from keyboard")
+    print(2, "Get data from server")
+    print(3, "Get data from chatGPT")
+    print(4, "Get data from file")
+    choise = input()
+    if choise == "1":
+        eleccion = data_source.get_data__from_keyboard()
+    elif choise == "2":
+        eleccion = data_source.get_data_from_server()
+    elif choise == "3":
+        pregunta = input("Cual es tu pregunta?")
+        eleccion = data_source.get_data_from_chatgpt(pregunta)
+    elif choise == "4":
+        print("Proximament")
+    else:
+        print("Escoje una de las siguientes opciones")
+    if choise in ["1", "2", "3", "4"]:
+        desordenar_palabra = crazy_words.printar_pedir_frase(eleccion)
+        print(desordenar_palabra)
 main()

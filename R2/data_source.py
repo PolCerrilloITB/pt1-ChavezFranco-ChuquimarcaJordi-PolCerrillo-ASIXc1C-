@@ -33,7 +33,7 @@ def get_data_from_server():
         return None
 
 
-def get_data_from_chatgpt():
+def get_data_from_chatgpt(pregunta):
     global question
     question = str(input())
     frase = openai.Completion.create(
