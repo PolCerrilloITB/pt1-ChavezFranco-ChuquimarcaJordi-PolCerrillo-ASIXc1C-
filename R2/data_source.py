@@ -12,14 +12,18 @@ import requests
 import openai
 openai.api_key = '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'
 API_KEY = 'MjOTkzw75nU7momSX5KDbQ==gVWI97BI0oLZ8eHj'
-frase = "."
+frase = ""
+question = ""
+
 
 def get_data__from_keyboard():
+    global frase
     frase = str(input())
     return frase
 
 
 def get_data_from_server():
+    global frase
     frase = str(input())
     frase = requests.get(frase, headers={'X-Api-Key': API_KEY})
     if frase.status_code == 200:
@@ -30,6 +34,7 @@ def get_data_from_server():
 
 
 def get_data_from_chatgpt():
+    global question
     question = str(input())
     frase = openai.Completion.create(
         engine="text-davinci-002",
@@ -41,5 +46,4 @@ def get_data_from_chatgpt():
 
 def get_data_from_file(file_name):
     pass
-
 
