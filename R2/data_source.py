@@ -15,10 +15,12 @@ API_KEY = 'MjOTkzw75nU7momSX5KDbQ==gVWI97BI0oLZ8eHj'
 
 
 def get_data__from_keyboard(frase):
+    frase = str(input())
     return frase
 
 
 def get_data_from_server(frase):
+    frase = str(input())
     frase = requests.get(frase, headers={'X-Api-Key': API_KEY})
     if frase.status_code == 200:
         return frase
@@ -39,3 +41,5 @@ def get_data_from_chatgpt(question):
 
 def get_data_from_file(file_name):
     pass
+
+get_data__from_keyboard()
