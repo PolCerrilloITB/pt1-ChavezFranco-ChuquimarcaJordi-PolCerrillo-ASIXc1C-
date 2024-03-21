@@ -30,7 +30,7 @@ def get_data_from_server(frase):
 
 
 def get_data_from_chatgpt(question):
-
+    question = str(input())
     frase = openai.Completion.create(
         engine="text-davinci-002",
         prompt=question,
