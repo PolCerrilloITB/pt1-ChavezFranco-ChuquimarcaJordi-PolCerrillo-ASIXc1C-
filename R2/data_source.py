@@ -9,6 +9,9 @@ no es genera arbitràriament, sinó que es planteja com un objectiu parcial, amb
 el seu problema de nivell superior. Un cop assolits tots aquests objectius parcials, es considera resolt el total.
 '''
 import requests
+import openai
+openai.api_key = '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'
+
 API_KEY = 'MjOTkzw75nU7momSX5KDbQ==gVWI97BI0oLZ8eHj'
 frase = "."
 def get_data__from_keyboard():
@@ -24,3 +27,17 @@ def get_data_from_server(frase):
         print(f"Error al obtener el input desde la API. Código de estado: {frase.status_code}")
         return None
 
+
+def get_data_from_chatGPT(question):
+
+    respuesta = openai.Completion.create(
+        engine="text-davinci-002",
+        prompt=question,
+        max_tokens=200
+    )
+    return respuesta.choices[0].text.strip()
+
+# Ejemplo de uso:
+pregunta = input("Introduce tu pregunta: ")
+respuesta = get_data_from_chatGPT(pregunta)
+print("Respuesta obtenida:", respuesta)
