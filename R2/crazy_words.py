@@ -8,45 +8,43 @@ Un punt important, a tenir en compte en aplicar aquesta descomposició, és que 
 no es genera arbitràriament, sinó que es planteja com un objectiu parcial, amb entitat pròpia, per resoldre
 el seu problema de nivell superior. Un cop assolits tots aquests objectius parcials, es considera resolt el total.
 '''
-numeros = ["0" "1" "2" "3" "4" "5" "6" "7" "8" "9"]
+numeros = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 import random
 import re
-def desordenar_frase(frase):
-    palabras = frase.split()
-    mezcla = [desordenar_palabra(palabra) for palabra in palabras]
-    frase_mezcla = ' '.join(mezcla)
-    return frase_mezcla
-def desordenar_palabra(frase):
-    if len(frase) > 2:
+def desordenar_palabra(palabra):
+    if len(palabra) > 2:
         simbolos_principio = ''
         simbolos_final = ''
-        if frase in numeros:
-            frase = frase
-        if frase[0] in ',.?¿¡!;:€@/()=&%$#"|':
-            simbolos_principio = frase[0]
-            frase = frase[0:]
-        if frase[-1] in ',.?¿¡!;:€@/()=&%$#"|':
-            simbolos_final = frase[-1]
-            frase = frase[:-1]
+        if palabra in numeros:
+            palabra = palabra
+        if palabra[0] in ',.?¿¡!;:€@/()=&%$#"|':
+            simbolos_principio = palabra[0]
+            palabra = palabra[0:]
+        if palabra[-1] in ',.?¿¡!;:€@/()=&%$#"|':
+            simbolos_final = palabra[-1]
+            palabra = palabra[:-1]
         apostrofe = -1
-        if "'" in frase:
-            apostrofe = frase.index("'")
-            frase = frase.replace("'", "")
-        intermedio = list(frase[1:-1])
+        if "'" in palabra:
+            apostrofe = palabra.index("'")
+            palabra = palabra.replace("'", "")
+        intermedio = list(palabra[1:-1])
         random.shuffle(intermedio)
         if apostrofe != -1:
             intermedio.insert =(apostrofe.index - 1, "'")
-            mezcla = simbolos_principio + frase[0] + ''.join(intermedio) + frase[-1] + simbolos_final
+        desordenar_palabra = simbolos_principio + palabra[0] + ''.join(intermedio) + palabra[-1] + simbolos_final
         url = None
-        url_coinicde = re.search(r'(https://\s+)', frase)
+        url_coinicde = re.search(r'(https://\s+)', palabra)
         if url_coinicde:
             url = url_coinicde.group(1)
-            frase = frase.replace(url, "")
+            palabra = palabra.replace(url, "")
         return desordenar_palabra
     else:
-        return frase
+        return palabra
+def desordenar_frase(frase):
+    palabras = frase.split()
+    mezcla = [desordenar_palabra(palabra) for palabra in palabras]
+    return ' '.join(mezcla)
 def printar_pedir_frase():
     frase = str(input(""))
-    frase_mezcla = desordenar_texto(frase)
+    frase_mezcla = desordenar_frase(frase)
     print(frase_mezcla)
-    return printar_frase_final
