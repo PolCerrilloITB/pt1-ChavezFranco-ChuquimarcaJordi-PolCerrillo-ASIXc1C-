@@ -37,7 +37,7 @@ def get_data_from_chatgpt(pregunta):
     global question
     question = str(input())
     frase = openai.Completion.create(
-        engine="text-davinci-002",
+        model="gpt-3.5-turbo-instruct",
         prompt=question,
         max_tokens=200
     )
