@@ -11,10 +11,11 @@ el seu problema de nivell superior. Un cop assolits tots aquests objectius parci
 import datetime
 import random
 import re
+import os
 import crazy_words
 
 def get_data_from_file():
-    with open('paraules.txt', 'r') as f:
+    with open('entrada, paraules.txt', 'r') as f:
         paraules = f.read().split()
     paraules_desordenades = set()
     for paraula in paraules:
@@ -22,12 +23,12 @@ def get_data_from_file():
         paraules_desordenades.add(paraula_desordenada)
     return paraules_desordenades
 def processar_paraules(paraules_desordenades):
-    with open('paraules_boges.txt', 'w') as f:
+    with open('sortida, paraules_boges.txt', 'w') as f:
         f.write(' '.join(paraules_desordenades))
         f.write('\n')
 def escritura_arxiu_log(arxiu_entrada):
     try:
-        with open('boges.log', 'a') as f:
+        with open('logs, boges.log', 'a') as f:
             now = datetime.datetime.now()
             f.write(f"{now}: S'han processat les paraules de l'arxiu '{arxiu_entrada}'.\n")
     except Exception as e:
