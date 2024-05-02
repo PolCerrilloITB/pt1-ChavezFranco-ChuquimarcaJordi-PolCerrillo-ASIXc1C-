@@ -13,9 +13,9 @@ import random
 import re
 import os
 import crazy_words
-
 def get_data_from_file():
-    with open('entrada, paraules.txt', 'r') as f:
+    arxiu_entrada = os.path.join('entrada', 'paraules.txt')
+    with open(arxiu_entrada, 'r') as f:
         paraules = f.read().split()
     paraules_desordenades = set()
     for paraula in paraules:
@@ -23,19 +23,17 @@ def get_data_from_file():
         paraules_desordenades.add(paraula_desordenada)
     return paraules_desordenades
 def processar_paraules(paraules_desordenades):
-    with open('sortida, paraules_boges.txt', 'w') as f:
+    arxiu_sortida = os.path.join('sortida', 'paraules_boges.txt')
+    with open(arxiu_sortida, 'w') as f:
         f.write(' '.join(paraules_desordenades))
         f.write('\n')
 def escritura_arxiu_log(arxiu_entrada):
+    arxiu_log = os.path.join('logs', 'boges.log')
     try:
-        with open('logs, boges.log', 'a') as f:
+        with open(arxiu_log, 'a') as f:
             now = datetime.datetime.now()
             f.write(f"{now}: S'han processat les paraules de l'arxiu '{arxiu_entrada}'.\n")
     except Exception as e:
         with open('boges.log', 'a') as f:
             now = datetime.datetime.now()
             f.write(f"{now}: ERROR - {str(e)}\n")
-
-
-
-
