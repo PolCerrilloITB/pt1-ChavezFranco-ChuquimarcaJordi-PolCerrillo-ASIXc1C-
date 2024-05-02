@@ -11,6 +11,8 @@ el seu problema de nivell superior. Un cop assolits tots aquests objectius parci
 numeros = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 import random
 import re
+import random
+import re
 def desordenar_palabra(palabra):
     if len(palabra) > 2:
         simbolos_principio = ''
@@ -23,21 +25,19 @@ def desordenar_palabra(palabra):
         if palabra[-1] in ',.?¿¡!;:€@/()=&%$#"|':
             simbolos_final = palabra[-1]
             palabra = palabra[:-1]
-        apostrofe = -1
-        if "'" in palabra:
-            apostrofe = palabra.index("'")
-            palabra = palabra.replace("'", "")
+        apostrofe = palabra.find("'")
+        palabra = palabra.replace("'", "")
         if palabra == ",":
             return palabra
         intermedio = list(palabra[1:-1])
         random.shuffle(intermedio)
         if apostrofe != -1:
-            intermedio.insert = (apostrofe.index - 1, "'")
+            intermedio.insert(apostrofe - 1, "'")
         palabra_desordenada = simbolos_principio + palabra[0] + ''.join(intermedio) + palabra[-1] + simbolos_final
         url = None
-        url_coinicde = re.search(r'(https?://\S+)', palabra)
-        if url_coinicde:
-            url = url_coinicde.group(1)
+        url_coincide = re.search(r'(https?://\S+)', palabra)
+        if url_coincide:
+            url = url_coincide.group(1)
             palabra = palabra.replace(url, '')
             return url
         mail = None
