@@ -9,7 +9,11 @@ no es genera arbitràriament, sinó que es planteja com un objectiu parcial, amb
 el seu problema de nivell superior. Un cop assolits tots aquests objectius parcials, es considera resolt el total.
 '''
 import data_source
-import data_source
-def main():
+from data_source import *
 
+def main():
+    paraules_desordenades = get_data_from_file()
+    processar_paraules(paraules_desordenades)
+    escritura_arxiu_log('paraules.txt')
+    print("L'arxiu s'ha processat")
 main()

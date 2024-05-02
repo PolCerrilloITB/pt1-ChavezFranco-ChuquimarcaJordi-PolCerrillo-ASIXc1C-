@@ -9,26 +9,32 @@ no es genera arbitràriament, sinó que es planteja com un objectiu parcial, amb
 el seu problema de nivell superior. Un cop assolits tots aquests objectius parcials, es considera resolt el total.
 '''
 import datetime
+import random
+import re
 import crazy_words
-def get_data__from_keyboard():
-    frase = str(input())
-    return frase
-def get_data_from_file(file_name):
 
-def processar_paraules(arxiu_entrada, arxiu_sortida, arxiu_log):
+def get_data_from_file():
+    with open('paraules.txt', 'r') as f:
+        paraules = f.read().split()
+    paraules_desordenades = set()
+    for paraula in paraules:
+        paraula_desordenada = crazy_words.desordenar_palabra(paraula)
+        paraules_desordenades.add(paraula_desordenada)
+    return paraules_desordenades
+def processar_paraules(paraules_desordenades):
+    with open('paraules_boges.txt', 'w') as f:
+        f.write(' '.join(paraules_desordenades))
+        f.write('\n')
+def escritura_arxiu_log(arxiu_entrada):
     try:
-        with open(arxiu_entrada, 'r') as f:
-            paraules = f.read().split()
-        processades = [palabra[::-1] for palabra in paraules]
-        with open(arxiu_sortida, 'w') as f:
-            for paraula in processades:
-                f.write(paraula + '\n')
-        with open(arxiu_log, 'a') as f:
+        with open('boges.log', 'a') as f:
             now = datetime.datetime.now()
-            f.write(f"{now}: S'ha processat l'arxiu '{arxiu_entrada}'.\n")
+            f.write(f"{now}: S'han processat les paraules de l'arxiu '{arxiu_entrada}'.\n")
     except Exception as e:
-        with open(arxiu_log, 'a') as f:
+        with open('boges.log', 'a') as f:
             now = datetime.datetime.now()
             f.write(f"{now}: ERROR - {str(e)}\n")
-processar_paraules(arxiu_entrada, arxiu_sortida, arxiu_log)
+
+
+
 
