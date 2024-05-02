@@ -33,7 +33,7 @@ def desordenar_palabra(palabra):
         random.shuffle(intermedio)
         if apostrofe != -1:
             intermedio.insert = (apostrofe.index - 1, "'")
-        desordenar_palabra = simbolos_principio + palabra[0] + ''.join(intermedio) + palabra[-1] + simbolos_final
+        palabra_desordenada = simbolos_principio + palabra[0] + ''.join(intermedio) + palabra[-1] + simbolos_final
         url = None
         url_coinicde = re.search(r'(https?://\S+)', palabra)
         if url_coinicde:
@@ -46,13 +46,9 @@ def desordenar_palabra(palabra):
             mail = mail_coincide.group(0)
             palabra = palabra.replace(mail, '')
             return mail
-        return desordenar_palabra
+        return palabra_desordenada
     else:
         return palabra
-def desordenar_frase(frase):
-    palabras = frase.split()
-    mezcla = [desordenar_palabra(palabra) for palabra in palabras]
-    return ' '.join(mezcla)
 def printar_pedir_frase(frase):
     frase_mezcla = desordenar_frase(frase)
     return frase_mezcla
