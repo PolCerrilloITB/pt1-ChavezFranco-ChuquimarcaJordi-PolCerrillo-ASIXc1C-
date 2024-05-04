@@ -26,7 +26,6 @@ def leer_palabras(frase):
         else:
             frase_final += palabra + " "
     return frase_final.strip()
-
 def apostrofe_guion(palabra):
     if "'" in palabra or "-" in palabra:
         if "'" in palabra:
@@ -36,7 +35,6 @@ def apostrofe_guion(palabra):
     if len(palabra) > 1 and palabra[-1] in ["'", "-"]:
         palabra = palabra[:-1] + palabra[-1] + palabra[-1]
     return palabra
-
 def mezcla(palabra):
     palabra_inicial = palabra
     if len(palabra) != 3 and (len(palabra) != 4 or palabra[1] != palabra[2]):
