@@ -9,46 +9,52 @@ no es genera arbitràriament, sinó que es planteja com un objectiu parcial, amb
 el seu problema de nivell superior. Un cop assolits tots aquests objectius parcials, es considera resolt el total.
 '''
 numeros = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+caracteres = ['.', ',', '!', '?', ';', ':', '¿', '¡', '(', ')', '"', '=', '€', '/']
+
+from crazy_phrase import frase_larga
 import random
-import re
-import random
-import re
-def desordenar_palabra(palabra):
-    if len(palabra) > 2:
-        simbolos_principio = ''
-        simbolos_final = ''
-        if palabra in numeros:
-            return palabra
-        if palabra[0] in ',.?¿¡!;:€@/()=&%$#"|':
-            simbolos_principio = palabra[0]
-            palabra = palabra[1:]
-        if palabra[-1] in ',.?¿¡!;:€@/()=&%$#"|':
-            simbolos_final = palabra[-1]
-            palabra = palabra[:-1]
-        apostrofe = palabra.find("'")
-        palabra = palabra.replace("'", "")
-        if palabra == ",":
-            return palabra
-        intermedio = list(palabra[1:-1])
-        random.shuffle(intermedio)
-        if apostrofe != -1:
-            intermedio.insert(apostrofe - 1, "'")
-        palabra_desordenada = simbolos_principio + palabra[0] + ''.join(intermedio) + palabra[-1] + simbolos_final
-        url = None
-        url_coincide = re.search(r'(https?://\S+)', palabra)
-        if url_coincide:
-            url = url_coincide.group(1)
-            palabra = palabra.replace(url, '')
-            return url
-        mail = None
-        mail_coincide = re.search(r'[\w\.-]+@[\w\.-]+', palabra)
-        if mail_coincide:
-            mail = mail_coincide.group(0)
-            palabra = palabra.replace(mail, '')
-            return mail
-        return palabra_desordenada
-    else:
-        return palabra
-def printar_pedir_frase(frase):
-    frase_mezcla = desordenar_frase(frase)
-    return frase_mezcla
+
+def leer_palabras(frase):
+    fraseSplit = frase.split()
+    frase_final = ""
+    for palabra in fraseSplit:
+        if len(palabra) == 1 or len(palabra) == 2 or (len(palabra) == 4 and palabra[-1] in caracteres):
+            frase_final += palabra + " "
+        elif palabra[0] in numeros or (palabra[0] in caracteres and palabra[2] in numeros) or ("." in palabra and palabra[-1] != "." and palabra[0] != ".") or palabra[1:-1] == palabra[1:-1][::-1]:
+            frase_final += palabra + " "
+        elif len(palabra) > 3:
+            frase_final = frase_larga(palabra, frase_final)
+        else:
+            frase_final += palabra + " "
+    return frase_final
+
+def apostrofe_guion(palabra):
+    posicio_caracter_mig = -1
+    tipus_caracter = ""
+    if "'" in palabra or "-" in palabra:
+        if "'" in palabra:
+            tipus_caracter = "'"
+            posicio_caracter_mig = palabra.index("'")
+            palabra = palabra.replace("'", "")
+        elif "-" in palabra:
+            tipus_caracter = "-"
+            posicio_caracter_mig = palabra.index("-")
+            palabra = palabra.replace("-", "")
+    if posicio_caracter_mig != -1:
+        palabra = list(palabra)
+        if tipus_caracter == "'":
+            palabra.insert(posicio_caracter_mig, "'")
+        else:
+            palabra.insert(posicio_caracter_mig, "-")
+        palabra = ''.join(palabra)
+    return palabra, posicio_caracter_mig, tipus_caracter
+
+def mezcla(palabra):
+    palabra, posicio_caracter, tipus_caracter = apostrofe_guion(palabra)
+    palabra_inicial = palabra
+    if len(palabra) != 3 and (len(palabra) != 4 or palabra[1] != palabra[2]):
+        if palabra[1:-1] != palabra[1:-1][::-1]:
+            while palabra == palabra_inicial:
+                palabra = ''.join([palabra[0]] + random.sample(palabra[1:-1], len(palabra[1:-1])) + [palabra[-1]])
+    palabra = apostrofe_guion(palabra, posicio_caracter, tipus_caracter)
+    return palabra
