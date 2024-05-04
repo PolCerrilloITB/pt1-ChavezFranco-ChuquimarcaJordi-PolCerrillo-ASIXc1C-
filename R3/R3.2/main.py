@@ -9,11 +9,15 @@ no es genera arbitràriament, sinó que es planteja com un objectiu parcial, amb
 el seu problema de nivell superior. Un cop assolits tots aquests objectius parcials, es considera resolt el total.
 '''
 import data_source
-from data_source import *
+import time
+import log_files
 
 def main():
-    paraules_desordenades = get_data_from_file()
-    processar_paraules(paraules_desordenades)
-    escritura_arxiu_log('paraules.txt')
-    print("L'arxiu s'ha processat")
+    cont_s = time.time()
+    log_files.info_log()
+    data_source.llegir_directori()
+    print("El archivo se ha procesado")
+    cont_f = time.time()
+    duration = cont_f - cont_s
+    log_files.final_log(duration)
 main()
