@@ -10,14 +10,14 @@ el seu problema de nivell superior. Un cop assolits tots aquests objectius parci
 '''
 import data_source
 import time
-import log_files
+import log
 
 def main():
     cont_s = time.time()
-    log_files.info_log()
+    log.info_log()
     data_source.llegir_directori()
     print("El archivo se ha procesado")
     cont_f = time.time()
-    duration = cont_f - cont_s
-    log_files.final_log(duration)
+    duracion = cont_f - cont_s
+    log.final_log(duracion)
 main()
