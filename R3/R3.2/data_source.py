@@ -10,7 +10,7 @@ el seu problema de nivell superior. Un cop assolits tots aquests objectius parci
 '''
 import os
 import crazy_words
-import log_files
+import log
 DIR_ENTRADA = os.path.join(".", "entrada")
 DIR_SALIDA = os.path.join(".", "sortida")
 
@@ -26,7 +26,7 @@ def llegir_directori():
                 linies_boges = [crazy_words.leer_palabras(linia) + '\n' for linia in linies]
                 escriptura_fitxers(linies_boges, arxiu)
             except Exception as e:
-                log_files.error_log(e, entrada_dir)
+                log.error_log(e, entrada_dir)
 
 def escriptura_fitxers(frase, arxiu):
     os.makedirs(DIR_SALIDA, exist_ok=True)
