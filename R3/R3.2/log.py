@@ -29,9 +29,9 @@ def info_log():
 
 def error_log(e, archivo):
     logger = configurar_logger()
-    logger.error("Archivo: " + archivo + " - " + str(e))
+    logger.error("Archivo: " + archivo + str(e))
 
 def final_log(duracion):
     logger = configurar_logger()
-    duration_str = "{:.2f}".format(duracion)
-    logger.info("Programa finalizado, tardó " + str(duration_str) + " segundos")
+    duracion_str = "{:.2f}".format(duracion)
+    logger.info("Programa finalizado, tardó " + str(duracion_str) + " segundos")
