@@ -19,7 +19,7 @@ def configurar_logger():
     log_formato = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     log_nivel = logging.DEBUG
     log_modo = 'a'
-    log_archivo = os.path.join(DIR_LOG, 'boges.log')
+    log_archivo = os.path.join(DIR_LOG, 'paraules_boges.log')
     logging.basicConfig(level=log_nivel, format=log_formato, filename=log_archivo, filemode=log_modo)
     return logging.getLogger(log_programa)
 
