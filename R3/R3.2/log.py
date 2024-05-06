@@ -1,3 +1,13 @@
+'''
+Franco Chavez/Jordi Chuquimarca/Pol Cerrillo
+19/03/2023
+ASIXc1C M03 UF2
+Descripción: Partint del problema general cal dividir-lo en problemes més simples, denominats subproblemes.
+Així trobarem les funcions en les quals cal descompondre.
+Un punt important, a tenir en compte en aplicar aquesta descomposició, és que cadascun dels subproblemes
+no es genera arbitràriament, sinó que es planteja com un objectiu parcial, amb entitat pròpia, per resoldre
+el seu problema de nivell superior. Un cop assolits tots aquests objectius parcials, es considera resolt el total.
+'''
 import logging
 import os
 
@@ -9,7 +19,7 @@ def configurar_logger():
     log_formato = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     log_nivel = logging.DEBUG
     log_modo = 'a'
-    log_archivo = os.path.join(DIR_LOG, 'boges.log')
+    log_archivo = os.path.join(DIR_LOG, 'paraules_boges.log')
     logging.basicConfig(level=log_nivel, format=log_formato, filename=log_archivo, filemode=log_modo)
     return logging.getLogger(log_programa)
 
@@ -19,9 +29,9 @@ def info_log():
 
 def error_log(e, archivo):
     logger = configurar_logger()
-    logger.error("Archivo: " + archivo + " - " + str(e))
+    logger.error("Archivo: " + archivo + str(e))
 
 def final_log(duracion):
     logger = configurar_logger()
-    duration_str = "{:.2f}".format(duracion)
-    logger.info("Programa finalizado, tardó " + str(duration_str) + " segundos")
+    duracion_str = "{:.2f}".format(duracion)
+    logger.info("Programa finalizado, tardó " + str(duracion_str) + " segundos")
