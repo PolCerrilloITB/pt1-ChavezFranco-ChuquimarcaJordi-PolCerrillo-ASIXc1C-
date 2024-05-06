@@ -15,7 +15,7 @@ import log
 def main():
     cont_s = time.time()
     log.info_log()
-    data_source.llegir_directori()
+    data_source.get_data_from_file()
     print("El archivo se ha procesado")
     cont_f = time.time()
     duracion = cont_f - cont_s

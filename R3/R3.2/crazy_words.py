@@ -11,7 +11,7 @@ el seu problema de nivell superior. Un cop assolits tots aquests objectius parci
 numeros = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 caracteres = ['.', ',', '!', '?', ';', ':', '¿', '¡', '(', ')', '"', '=', '€', '/']
 
-from crazy_phrase import frase_larga
+# from crazy_phrase import frase_larga
 import random
 def leer_palabras(frase):
     fraseSplit = frase.split()
@@ -22,10 +22,32 @@ def leer_palabras(frase):
         elif palabra[0] in numeros or (palabra[0] in caracteres and palabra[2] in numeros) or ("." in palabra and palabra[-1]!= "." and palabra[0]!= ".") or palabra[1:-1] == palabra[1:-1][::-1]:
             frase_final += palabra + " "
         elif len(palabra) > 3:
-            frase_final = frase_larga(palabra, frase_final)
+            frase_final = procesar_palabra(palabra, frase_final)
         else:
             frase_final += palabra + " "
     return frase_final.strip()
+def procesar_palabra(palabra, frase):
+    palabra_modificada = palabra
+
+    if palabra[-1] in caracteres and palabra[0] in caracteres:
+        primer_caracter = palabra[0]
+        ultimo_caracter = palabra[-1]
+        palabra_modificada = palabra_modificada[1:-1]
+        palabra_modificada = mezcla(palabra_modificada)
+        palabra_modificada = primer_caracter + palabra_modificada + ultimo_caracter
+    elif palabra[-1] in caracteres:
+        ultimo_caracter = palabra[-1]
+        palabra_modificada = palabra_modificada[:-1]
+        palabra_modificada = mezcla(palabra_modificada) + ultimo_caracter
+    elif palabra[0] in caracteres and palabra[-1] in caracteres:
+        primer_caracter = palabra[0]
+        palabra_modificada = palabra_modificada[1:]
+        palabra_modificada = primer_caracter + mezcla(palabra_modificada)
+    else:
+        palabra_modificada = mezcla(palabra_modificada)
+
+    frase += palabra_modificada + " "
+    return frase
 def apostrofe_guion(palabra):
     if "'" in palabra or "-" in palabra:
         if "'" in palabra:

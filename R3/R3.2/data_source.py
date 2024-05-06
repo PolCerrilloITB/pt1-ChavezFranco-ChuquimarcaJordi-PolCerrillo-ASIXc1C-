@@ -14,7 +14,7 @@ import log
 DIR_ENTRADA = os.path.join(".", "entrada")
 DIR_SALIDA = os.path.join(".", "sortida")
 
-def llegir_directori():
+def get_data_from_file():
     arxius = os.listdir(DIR_ENTRADA)
     for arxiu in arxius:
         entrada_dir = os.path.join(DIR_ENTRADA, arxiu)
