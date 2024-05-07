@@ -1,6 +1,6 @@
 '''
 Franco Chavez/Jordi Chuquimarca/Pol Cerrillo
-02/04/2023
+02/05/2023
 ASIXc1C M03 UF2
 Descripción: Partint del problema general cal dividir-lo en problemes més simples, denominats subproblemes.
 Així trobarem les funcions en les quals cal descompondre.
