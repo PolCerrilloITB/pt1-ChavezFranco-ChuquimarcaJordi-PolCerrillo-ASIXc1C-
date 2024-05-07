@@ -11,24 +11,31 @@ el seu problema de nivell superior. Un cop assolits tots aquests objectius parci
 numeros = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 caracteres = ['.', ',', '!', '?', ';', ':', '¿', '¡', '(', ')', '"', '=', '€', '/']
 
-# from crazy_phrase import frase_larga
 import random
+
+# Función para procesar palabras en una frase.
 def leer_palabras(frase):
+    # Divide la frase en palabras.
     fraseSplit = frase.split()
     frase_final = ""
     for palabra in fraseSplit:
+        # Condiciones para mantener la palabra sin cambios.
         if len(palabra) <= 2 or (len(palabra) == 4 and palabra[-1] in caracteres):
             frase_final += palabra + " "
+        # Condiciones para mantener la palabra sin cambios o con modificaciones específicas.
         elif palabra[0] in numeros or (palabra[0] in caracteres and palabra[2] in numeros) or ("." in palabra and palabra[-1]!= "." and palabra[0]!= ".") or palabra[1:-1] == palabra[1:-1][::-1]:
             frase_final += palabra + " "
+        # Si la palabra es más larga que 3 caracteres, se procesa.
         elif len(palabra) > 3:
             frase_final = procesar_palabra(palabra, frase_final)
         else:
             frase_final += palabra + " "
     return frase_final.strip()
+
+# Función para procesar una palabra específica.
 def procesar_palabra(palabra, frase):
     palabra_modificada = palabra
-
+    # Modifica la palabra según la posición de caracteres especiales.
     if palabra[-1] in caracteres and palabra[0] in caracteres:
         primer_caracter = palabra[0]
         ultimo_caracter = palabra[-1]
@@ -46,8 +53,11 @@ def procesar_palabra(palabra, frase):
     else:
         palabra_modificada = mezcla(palabra_modificada)
 
+    # Agrega la palabra modificada a la frase.
     frase += palabra_modificada + " "
     return frase
+
+# Función para procesar apóstrofos y guiones en palabras.
 def apostrofe_guion(palabra):
     if "'" in palabra or "-" in palabra:
         if "'" in palabra:
@@ -57,6 +67,8 @@ def apostrofe_guion(palabra):
     if len(palabra) > 1 and palabra[-1] in ["'", "-"]:
         palabra = palabra[:-1] + palabra[-1] + palabra[-1]
     return palabra
+
+# Función para mezclar las letras de una palabra, manteniendo los caracteres especiales en su lugar.
 def mezcla(palabra):
     palabra_inicial = palabra
     if len(palabra) != 3 and (len(palabra) != 4 or palabra[1] != palabra[2]):
