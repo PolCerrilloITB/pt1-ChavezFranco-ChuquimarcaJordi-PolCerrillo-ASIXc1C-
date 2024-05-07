@@ -11,28 +11,32 @@ el seu problema de nivell superior. Un cop assolits tots aquests objectius parci
 import os
 import crazy_words
 import log
+# Directorios de entrada y salida.
 DIR_ENTRADA = os.path.join(".", "entrada")
 DIR_SALIDA = os.path.join(".", "sortida")
 
-def get_data_from_file():
+def llegir_directori():
     arxius = os.listdir(DIR_ENTRADA)
     for arxiu in arxius:
         entrada_dir = os.path.join(DIR_ENTRADA, arxiu)
         if os.path.isfile(entrada_dir) and entrada_dir.endswith(".txt"):
             try:
+                # Abre el archivo en modo lectura y lee todas las líneas.
                 with open(entrada_dir, 'r', encoding='utf-8') as f:
                     linies = f.readlines()
                 f.close()
+                # Procesa cada línea del archivo utilizando una función de la librería 'crazy_words'.
                 linies_boges = [crazy_words.leer_palabras(linia) + '\n' for linia in linies]
                 escriptura_fitxers(linies_boges, arxiu)
             except Exception as e:
+# Si hay un error durante la lectura o el procesamiento, registra el error utilizando una función definida en el módulo 'log'.
                 log.error_log(e, entrada_dir)
 
 def escriptura_fitxers(frase, arxiu):
     os.makedirs(DIR_SALIDA, exist_ok=True)
     output_file_path = os.path.join(DIR_SALIDA, arxiu + "_boges.txt")
+    # Abre el archivo de salida en modo escritura y escribe las líneas procesadas.
     with open(output_file_path, 'w', encoding='utf-8') as f:
         f.writelines(frase)
     f.close()
-
 
